@@ -17,7 +17,7 @@ public class Patient {
 	private String firstName;
 	private int age;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "patient")
-	private List<ClinicalData> clinicalData;
+	private List<Clinicaldata> clinicalData;
 
 	public int getId() {
 		return id;

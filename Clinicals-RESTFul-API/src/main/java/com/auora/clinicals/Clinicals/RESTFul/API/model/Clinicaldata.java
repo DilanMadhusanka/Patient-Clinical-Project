@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ClinicalData {
+public class Clinicaldata {
 
 	@Id
 	private int id;
