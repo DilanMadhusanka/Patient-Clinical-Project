@@ -3,6 +3,7 @@ package com.auora.clinicals.Clinicals.RESTFul.API.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,5 +21,15 @@ public class PatientController {
 	@RequestMapping(value = "/patients", method = RequestMethod.GET)
 	public List<Patient> getPatient() {
 		return repository.findAll();
+	}
+	
+	@RequestMapping(value = "/patients/{id}", method = RequestMethod.GET)
+	public Patient getPatient(@PathVariable("id") int id) {
+		return repository.findById(id).get();
+	}
+	
+	@RequestMapping(value = "/patients", method = RequestMethod.POST)
+	public Patient savePatient(Patient patient) {
+		return repository.save(patient);
 	}
 }
