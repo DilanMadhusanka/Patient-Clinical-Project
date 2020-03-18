@@ -1,7 +1,9 @@
 package com.auora.clinicals.Clinicals.RESTFul.API.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,7 @@ public class PatientController {
 
 	@Autowired
 	private PatientRepository repository;
+	Map<String, String> filters = new HashMap<>();
 
 	@RequestMapping(value = "/patients", method = RequestMethod.GET)
 	public List<Patient> getPatient() {
@@ -42,16 +45,22 @@ public class PatientController {
 		List<ClinicalData> clinicalData = patient.getClinicalData();
 		ArrayList<ClinicalData> duplicateClinicalData = new ArrayList<>(clinicalData);
 		for (ClinicalData eachEntry : duplicateClinicalData) {
-			if (eachEntry.getComponentName().equals("hw")) {
-				String[] heightAndWeight = eachEntry.getComponentValue().split("/");
-				if (heightAndWeight != null && heightAndWeight.length > 1) {
-					float heightInMeter = Float.parseFloat(heightAndWeight[0]) * 0.4536F;
-					float bmi = Float.parseFloat(heightAndWeight[1]) / (heightInMeter);
-					ClinicalData bmiData = new ClinicalData();
-					bmiData.setComponentName("bmi");
-					bmiData.setComponentValue(Float.toString(bmi));
-					clinicalData.add(bmiData);
-				}
+
+			if (filters.containsKey(eachEntry.getComponentName())) {
+				clinicalData.remove(eachEntry);
+				continue;
+			} else {
+				filters.put(eachEntry.getComponentName(), null);
+			}
+
+			String[] heightAndWeight = eachEntry.getComponentValue().split("/");
+			if (heightAndWeight != null && heightAndWeight.length > 1) {
+				float heightInMeter = Float.parseFloat(heightAndWeight[0]) * 0.4536F;
+				float bmi = Float.parseFloat(heightAndWeight[1]) / (heightInMeter);
+				ClinicalData bmiData = new ClinicalData();
+				bmiData.setComponentName("bmi");
+				bmiData.setComponentValue(Float.toString(bmi));
+				clinicalData.add(bmiData);
 			}
 		}
 		return patient;
