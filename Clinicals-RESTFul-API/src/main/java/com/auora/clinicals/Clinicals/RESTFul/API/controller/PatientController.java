@@ -33,4 +33,10 @@ public class PatientController {
 	public Patient savePatient(@RequestBody Patient patient) {
 		return repository.save(patient);
 	}
+	
+	@RequestMapping(value = "/patients/analysis/{id}")
+	public Patient analysis(@PathVariable("id") int id) {
+		Patient patient = repository.findById(id).get();
+		return null;
+	}
 }
