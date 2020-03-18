@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -12,12 +14,13 @@ import javax.persistence.OneToMany;
 public class Patient {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String lastName;
 	private String firstName;
 	private int age;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "patient")
-	private List<Clinicaldata> clinicalData;
+	private List<ClinicalData> clinicalData;
 
 	public int getId() {
 		return id;

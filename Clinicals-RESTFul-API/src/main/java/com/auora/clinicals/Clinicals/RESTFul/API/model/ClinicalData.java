@@ -7,9 +7,11 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Clinicaldata {
+@Table(name = "clinicaldata")
+public class ClinicalData {
 
 	@Id
 	private int id;
@@ -50,6 +52,14 @@ public class Clinicaldata {
 
 	public void setMeasuredDateTime(Timestamp measuredDateTime) {
 		this.measuredDateTime = measuredDateTime;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 
 }
