@@ -1,6 +1,9 @@
 package com.auora.clinicals.Clinicals.RESTFul.API.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,5 +32,11 @@ public class ClinicalDataController {
 		clinicalData.setComponentValue(request.getComponentValue());
 		clinicalData.setPatient(patient);
 		return clinicalDataRepository.save(clinicalData);
+	}
+	
+	@RequestMapping(value = "/clinicals/{patientId}/{componentName}")
+	public List<ClinicalData> getClinicalData(@PathVariable("patientId") int patientId, @PathVariable("componentName") String componentName) {
+		List<ClinicalData> cliniclaData = clinicalDataRepository.findByPatientIdAndComponentNameOrderByMeasuredDateTime(patientId, componentName);
+		return null;
 	}
 }
