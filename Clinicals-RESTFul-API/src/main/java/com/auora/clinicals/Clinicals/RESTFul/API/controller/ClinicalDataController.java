@@ -1,5 +1,6 @@
 package com.auora.clinicals.Clinicals.RESTFul.API.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.auora.clinicals.Clinicals.RESTFul.API.model.ClinicalData;
 import com.auora.clinicals.Clinicals.RESTFul.API.model.Patient;
 import com.auora.clinicals.Clinicals.RESTFul.API.repos.ClinicalDataRepository;
 import com.auora.clinicals.Clinicals.RESTFul.API.repos.PatientRepository;
+import com.auora.clinicals.Clinicals.RESTFul.API.util.BMICalcualtor;
 
 @RestController
 @RequestMapping("api")
@@ -34,9 +36,16 @@ public class ClinicalDataController {
 		return clinicalDataRepository.save(clinicalData);
 	}
 	
-	@RequestMapping(value = "/clinicals/{patientId}/{componentName}")
+	@RequestMapping(value = "/clinicals/{patientId}/{componentName}", method = RequestMethod.GET)
 	public List<ClinicalData> getClinicalData(@PathVariable("patientId") int patientId, @PathVariable("componentName") String componentName) {
-		List<ClinicalData> cliniclaData = clinicalDataRepository.findByPatientIdAndComponentNameOrderByMeasuredDateTime(patientId, componentName);
-		return null;
+		if(componentName.equals("bmi")) {
+			componentName = "hw";
+		}
+		List<ClinicalData> clinicalData = clinicalDataRepository.findByPatientIdAndComponentNameOrderByMeasuredDateTime(patientId, componentName);
+		ArrayList<ClinicalData> duplicateClinicalData = new ArrayList<>(clinicalData);
+		for (ClinicalData eachEntry : duplicateClinicalData) {
+			BMICalcualtor.calculateBMI(clinicalData, eachEntry);
+		}
+		return clinicalData;
 	}
 }
