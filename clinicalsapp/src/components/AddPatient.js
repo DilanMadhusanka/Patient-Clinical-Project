@@ -1,5 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastift.css';
+
+toast.configure();
 
 class AddPatient extends React.Component {
     handleSubmit(event) {
@@ -9,9 +13,10 @@ class AddPatient extends React.Component {
             age: this.age
         }
         axios.post("http://localhost:8080/clinicalservices/api/patients", data)
-        .then(res => { 
-            event.preventDefault();
-        })
+            .then(res => {
+                toast("Patient added successfully", { autoClose: 2000, position: toast.POSITION.BOTTOM_CENTER })
+                event.preventDefault();
+            })
     }
     render() {
         return (
