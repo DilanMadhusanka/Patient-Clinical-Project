@@ -6,7 +6,7 @@ class Home extends React.Component {
     state = {
         patientData: []
     }
-    componentWillMount() {
+    componentDidMount() {
         axios.get('http://localhost:8080/clinicalservices/api/patients').then(res => {
             const patientData = res.data;
             this.setState({ patientData })
@@ -26,7 +26,7 @@ class Home extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.patientData.map(patient => <RowCreator item={patient} />)}
+                        {this.state.patientData.map(patient => <RowCreator key={patient.id} item={patient} />)}
                     </tbody>
                 </table>
                 <br/>

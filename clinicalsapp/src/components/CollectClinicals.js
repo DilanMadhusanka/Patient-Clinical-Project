@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 class CollectClinicals extends React.Component {
     state = {}
-    componentWillMount() {
+    componentDidMount() {
         axios.get("http://localhost:8080/clinicalservices/api/patients/" + this.props.match.params.patientId)
             .then(res => {
                 this.setState(res.data)

@@ -5,7 +5,7 @@ class ChartGenerator extends React.Component {
     state = {
         clinicalsData: []
     }
-    componentWillMount() {
+    componentDidMount() {
         axios.get("http://localhost:8080/clinicalservices/api/clinicals/" + this.props.match.params.patientId + "/" + this.props.match.params.componentName)
             .then(res => {
                 const clinicalsData = res.data
@@ -15,7 +15,7 @@ class ChartGenerator extends React.Component {
     render() {
         return (
             <div>
-                {this.state.clinicalsData.map(data => <TableCreator item={data} />)}
+                {this.state.clinicalsData.map(data => <TableCreator key={data.id} item={data} />)}
             </div>
         )
     }
@@ -26,11 +26,13 @@ class TableCreator extends React.Component {
         return (
             <div>
                 <table>
-                    <tr>
-                        <td>{this.props.item.id}</td>
-                        <td>{this.props.item.componentName}</td>
-                        <td>{this.props.item.componentValue}</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>{this.props.item.id}</td>
+                            <td>{this.props.item.componentName}</td>
+                            <td>{this.props.item.componentValue}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         )

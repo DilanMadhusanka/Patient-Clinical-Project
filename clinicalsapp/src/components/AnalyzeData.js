@@ -6,7 +6,7 @@ class AnalyzeData extends React.Component {
     state = {
         clinicalData: []
     }
-    componentWillMount() {
+    componentDidMount() {
         axios.get("http://localhost:8080/clinicalservices/api/patients/analyze/" + this.props.match.params.patientId)
             .then(res => {
                 this.setState(res.data)
@@ -20,7 +20,7 @@ class AnalyzeData extends React.Component {
                 Last Name: {this.state.lastName}
                 Age: {this.state.age}
                 <h2>Clinical Report:</h2>
-                {this.state.clinicalData.map(eachEntry => <TableCreator item={eachEntry} patientId={this.state.id} />)}
+                {this.state.clinicalData.map(eachEntry => <TableCreator key={eachEntry.id} item={eachEntry} patientId={this.state.id} />)}
             </div>
         )
     }
@@ -33,13 +33,15 @@ class TableCreator extends React.Component {
         return (
             <div>
                 <table>
-                    <tr><td><b>{eachEntry.componentName}</b></td></tr>
-                    <tr>
-                        <td>{eachEntry.componentName}</td>
-                        <td>{eachEntry.componentValue}</td>
-                        <td>{eachEntry.measuredDateTime}</td>
-                        <td><Link to={'/chart/'+eachEntry.componentName+'/'+patientId} >Description</Link></td>
-                    </tr>
+                    <tbody>
+                        <tr><td><b>{eachEntry.componentName}</b></td></tr>
+                        <tr>
+                            <td>{eachEntry.componentName}</td>
+                            <td>{eachEntry.componentValue}</td>
+                            <td>{eachEntry.measuredDateTime}</td>
+                            <td><Link to={'/chart/' + eachEntry.componentName + '/' + patientId} >Description</Link></td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         )
