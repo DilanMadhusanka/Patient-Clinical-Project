@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class AnalyzeData extends React.Component {
     state = {
@@ -37,6 +38,7 @@ class TableCreator extends React.Component {
                         <td>{eachEntry.componentName}</td>
                         <td>{eachEntry.componentValue}</td>
                         <td>{eachEntry.measuredDateTime}</td>
+                        <td><Link to={'/chart/'+eachEntry.componentName+'/'+patientId} >Description</Link></td>
                     </tr>
                 </table>
             </div>
