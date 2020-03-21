@@ -1,12 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastift.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 toast.configure();
 
 class AddPatient extends React.Component {
     handleSubmit(event) {
+        event.preventDefault();
         const data = {
             firstName: this.firstName,
             lastName: this.lastName,
@@ -15,7 +17,6 @@ class AddPatient extends React.Component {
         axios.post("http://localhost:8080/clinicalservices/api/patients", data)
             .then(res => {
                 toast("Patient added successfully", { autoClose: 2000, position: toast.POSITION.BOTTOM_CENTER })
-                event.preventDefault();
             })
     }
     render() {
@@ -28,6 +29,7 @@ class AddPatient extends React.Component {
                     Age: <input type="text" name="age" onChange={(event => this.age = event.target.value)} />
                     <button onClick={this.handleSubmit.bind(this)} >Confirm</button>
                 </form>
+                <Link to="/">Go Back</Link>
             </div>
         )
     }
