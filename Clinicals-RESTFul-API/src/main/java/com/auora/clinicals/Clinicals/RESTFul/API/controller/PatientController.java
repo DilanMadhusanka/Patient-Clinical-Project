@@ -42,7 +42,7 @@ public class PatientController {
 		return repository.save(patient);
 	}
 
-	@RequestMapping(value = "/patients/analysis/{id}")
+	@RequestMapping(value = "/patients/analyze/{id}")
 	public Patient analysis(@PathVariable("id") int id) {
 		Patient patient = repository.findById(id).get();
 		List<ClinicalData> clinicalData = patient.getClinicalData();
