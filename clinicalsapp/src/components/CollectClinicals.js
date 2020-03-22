@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import Header from './Header';
 import Footer from './Footer'
-import { Link } from 'react-router-dom';
+import ButtonBackToHome from './ButtonBackToHome';
 
 class CollectClinicals extends React.Component {
     state = {}
@@ -91,12 +91,7 @@ class CollectClinicals extends React.Component {
                                 </div>
                             </form>
                         </p>
-                        <div className="ui center aligned container">
-                            <Link class="large ui red button" to="/">
-                                <i className="ui angle double left icon"/>
-                                Back
-                            </Link>
-                        </div>
+                        <ButtonBackToHome/>
                     </div>
                 </div>
                 <Footer />

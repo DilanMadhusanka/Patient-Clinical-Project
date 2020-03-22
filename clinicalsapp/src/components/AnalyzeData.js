@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import ButtonBackToHome from './ButtonBackToHome';
 
 class AnalyzeData extends React.Component {
     state = {
@@ -46,12 +47,7 @@ class AnalyzeData extends React.Component {
                     {this.state.clinicalData.map(eachEntry => <TableCreator key={eachEntry.id} item={eachEntry} patientId={this.state.id} />)}
                 </div>
                 <br />
-                <div className="ui center aligned container">
-                    <Link className="large ui red button" to="/">
-                        <i className="ui angle double left icon" />
-                        Back to Home
-                    </Link>
-                </div>
+                <ButtonBackToHome/>
                 <Footer />
             </div>
         )
