@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 
 class AnalyzeData extends React.Component {
     state = {
@@ -15,12 +17,42 @@ class AnalyzeData extends React.Component {
     render() {
         return (
             <div>
-                <h2>Patient Details:</h2>
-                First Name: {this.state.firstName}
-                Last Name: {this.state.lastName}
-                Age: {this.state.age}
-                <h2>Clinical Report:</h2>
-                {this.state.clinicalData.map(eachEntry => <TableCreator key={eachEntry.id} item={eachEntry} patientId={this.state.id} />)}
+                <Header />
+                <div className="ui container">
+                    <h2>Patient Details:</h2>
+                    <div className="ui text container">
+                        <div className="ui middle aligned selection list">
+                            <div className="item">
+                                <i className="chevron right icon"></i>
+                                <div className="content">
+                                    <div className="header">First Name: {this.state.firstName}</div>
+                                </div>
+                            </div>
+                            <div className="item">
+                                <i className="chevron right icon"></i>
+                                <div className="content">
+                                    <div className="header">Last Name: {this.state.lastName}</div>
+                                </div>
+                            </div>
+                            <div className="item">
+                                <i className="chevron right icon"></i>
+                                <div className="content">
+                                    <div className="header">Age: {this.state.age}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Clinical Report:</h2>
+                    {this.state.clinicalData.map(eachEntry => <TableCreator key={eachEntry.id} item={eachEntry} patientId={this.state.id} />)}
+                </div>
+                <br />
+                <div className="ui center aligned container">
+                    <Link className="large ui red button" to="/">
+                        <i className="ui angle double left icon" />
+                        Back to Home
+                    </Link>
+                </div>
+                <Footer />
             </div>
         )
     }
@@ -31,18 +63,34 @@ class TableCreator extends React.Component {
         var eachEntry = this.props.item;
         var patientId = this.props.patientId;
         return (
-            <div>
-                <table>
-                    <tbody>
-                        <tr><td><b>{eachEntry.componentName}</b></td></tr>
-                        <tr>
-                            <td>{eachEntry.componentName}</td>
-                            <td>{eachEntry.componentValue}</td>
-                            <td>{eachEntry.measuredDateTime}</td>
-                            <td><Link to={'/chart/' + eachEntry.componentName + '/' + patientId} >Description</Link></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div className="ui container">
+                <div className="ui segments">
+                    <div className="ui segment">
+                        <p><b>{eachEntry.componentName}</b></p>
+                    </div>
+                    <div className="ui horizontal segments">
+                        <div className="ui segment">
+                            <p>{eachEntry.componentName}</p>
+                        </div>
+                        <div className="ui segment">
+                            <p>{eachEntry.componentValue}</p>
+                        </div>
+                        <div className="ui segment">
+                            <p>{eachEntry.measuredDateTime}</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="ui container">
+                    <p>
+                        <b>
+                            <Link className="ui right labeled icon button" to={'/chart/' + eachEntry.componentName + '/' + patientId}>
+                                    <i className="right arrow icon"></i>
+                                    Description
+                            </Link>
+                        </b>
+                    </p>
+                </div>
+                <br/>
             </div>
         )
     }
