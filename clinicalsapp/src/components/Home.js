@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 
 class Home extends React.Component {
     state = {
@@ -15,22 +17,32 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <h2>Patient:</h2>
-                <table align='center'>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Age</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.patientData.map(patient => <RowCreator key={patient.id} item={patient} />)}
-                    </tbody>
-                </table>
-                <br/>
-                <Link to={'/addPatient'}><font size="5">Register Patient</font></Link>
+                <Header/>
+                <div className="ui container">
+                    <h1 className="ui huge center aligned icon header">
+                        <i className="circular users icon"></i>
+                    Patients
+                </h1>
+                    <table className="ui celled table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Age</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.patientData.map(patient => <RowCreator key={patient.id} item={patient} />)}
+                        </tbody>
+                    </table>
+                    <div className="ui center aligned container">
+                        <Link to={'/addPatient'} className="ui huge red button"><i className="icon user" /> Register Patient</Link>
+                    </div>
+                </div>
+                <Footer/>
             </div>
         )
     }
@@ -39,14 +51,18 @@ class Home extends React.Component {
 class RowCreator extends React.Component {
     render() {
         var patient = this.props.item;
-        return(
+
+        const style = {
+            width: "120px"
+        }
+        return (
             <tr>
-                <td>{patient.id}</td>
-                <td>{patient.firstName}</td>
-                <td>{patient.lastName}</td>
-                <td>{patient.age}</td>
-                <td><Link to={'/patientDetails/'+patient.id} >Add Data</Link></td>
-                <td><Link to={'/analyze/'+patient.id} >Analyze</Link></td>
+                <td data-label="id">{patient.id}</td>
+                <td data-label="FirstName">{patient.firstName}</td>
+                <td data-label="LastName">{patient.lastName}</td>
+                <td data-label>{patient.age}</td>
+                <td style={style}><Link to={'/patientDetails/' + patient.id} className="mini ui teal button" >Add Data</Link></td>
+                <td style={style}><Link to={'/analyze/' + patient.id} className="mini ui teal button" >Analyze</Link></td>
             </tr>
         )
     }
