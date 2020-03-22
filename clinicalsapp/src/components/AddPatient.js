@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
+import Header from './Header';
 
 toast.configure();
 
@@ -22,14 +23,38 @@ class AddPatient extends React.Component {
     render() {
         return (
             <div>
-                <h2>Create Patient:</h2>
-                <form>
-                    First Name: <input type="text" name="firstName" onChange={(event => this.firstName = event.target.value)} />
-                    Last Name: <input type="text" name="lastName" onChange={(event => this.lastName = event.target.value)} />
-                    Age: <input type="text" name="age" onChange={(event => this.age = event.target.value)} />
-                    <button onClick={this.handleSubmit.bind(this)} >Confirm</button>
-                </form>
-                <Link to="/">Go Back</Link>
+                <Header />
+                <div className="ui container">
+                    <h2>Register Patient:</h2>
+                    <div className="ui segment">
+                    <form className="ui form">
+                        <div className="field">
+                            <label>First Name</label>
+                            <input type="text" name="firstName" placeholder="First Name" onChange={(event => this.firstName = event.target.value)} />
+                        </div>
+                        <div className="field">
+                            <label>Last Name</label>
+                            <input type="text" name="lastName" placeholder="Last Name" onChange={(event => this.lastName = event.target.value)} />
+                        </div>
+                        <div className="field">
+                            <label>Age</label>
+                            <input type="text" name="age" placeholder="Age" onChange={(event => this.age = event.target.value)} />
+                        </div>
+                        <div className="field">
+                            <div className="ui checkbox">
+                                <input type="checkbox" tabindex="0" class="hidden" />
+                                <label>I agree to the Terms and Conditions</label>
+                            </div>
+                        </div>
+                        <button className="ui secondary button" type="submit" onClick={this.handleSubmit.bind(this)}>
+                            Submit
+                        </button>
+                        <Link className="ui button" to="/">
+                            Back
+                        </Link>
+                    </form>
+                    </div>
+                </div>
             </div>
         )
     }
