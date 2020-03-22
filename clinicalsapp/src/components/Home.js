@@ -17,32 +17,34 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <Header/>
+                <Header />
                 <div className="ui container">
                     <h1 className="ui huge center aligned icon header">
                         <i className="circular users icon"></i>
                     Patients
                 </h1>
-                    <table className="ui celled table">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Age</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.patientData.map(patient => <RowCreator key={patient.id} item={patient} />)}
-                        </tbody>
-                    </table>
+                    <div className="ui segment">
+                        <table className="ui selectable celled inverted table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Age</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.patientData.map(patient => <RowCreator key={patient.id} item={patient} />)}
+                            </tbody>
+                        </table>
+                    </div>
                     <div className="ui center aligned container">
                         <Link to={'/addPatient'} className="ui huge red button"><i className="icon user" /> Register Patient</Link>
                     </div>
                 </div>
-                <Footer/>
+                <Footer />
             </div>
         )
     }
