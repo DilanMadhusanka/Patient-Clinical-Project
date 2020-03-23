@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import backImg from './images/backImg.jpg'
 
 class Home extends React.Component {
     state = {
@@ -16,15 +17,16 @@ class Home extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div style={{backgroundImage:`url(${backImg})`}}>
                 <Header />
+                <br />
                 <div className="ui container">
                     <h1 className="ui huge center aligned icon header">
                         <i className="circular users icon"></i>
                     Patients
                 </h1>
                     <div className="ui segment">
-                        <table className="ui selectable celled inverted table">
+                        <table className="ui selectable celled table">
                             <thead>
                                 <tr>
                                     <th>Id</th>

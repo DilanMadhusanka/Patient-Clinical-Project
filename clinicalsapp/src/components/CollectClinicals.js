@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Header from './Header';
-import Footer from './Footer'
 import ButtonBackToHome from './ButtonBackToHome';
 
 class CollectClinicals extends React.Component {
@@ -33,40 +32,40 @@ class CollectClinicals extends React.Component {
                 <Header />
                 <div className="ui container">
                     <h2>Patient Details:</h2>
-                    <div class="ui text container">
-                        <div class="ui middle aligned selection list">
-                            <div class="item">
-                                <i class="chevron right icon"></i>
-                                <div class="content">
-                                    <div class="header">First Name: {this.state.firstName}</div>
+                    <div className="ui text container">
+                        <div className="ui middle aligned selection list">
+                            <div className="item">
+                                <i className="chevron right icon"></i>
+                                <div className="content">
+                                    <div className="header">First Name: {this.state.firstName}</div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <i class="chevron right icon"></i>
-                                <div class="content">
-                                    <div class="header">Last Name: {this.state.lastName}</div>
+                            <div className="item">
+                                <i className="chevron right icon"></i>
+                                <div className="content">
+                                    <div className="header">Last Name: {this.state.lastName}</div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <i class="chevron right icon"></i>
-                                <div class="content">
-                                    <div class="header">Age: {this.state.age}</div>
+                            <div className="item">
+                                <i className="chevron right icon"></i>
+                                <div className="content">
+                                    <div className="header">Age: {this.state.age}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <h2>Patient Clinical Data:</h2>
-                    <div class="ui very padded segment">
-                        <p>
+                    <div className="ui very padded segment">
+                        <div>
                             <form className="ui form">
-                                <div class="ui inverted segment">
-                                    <div class="ui inverted form">
-                                        <div class="two fields">
-                                            <div class="field">
-                                                <div class="two fields">
-                                                    <div class="field">
-                                                        <label>State</label>
-                                                        <select class="ui fluid dropdown" onChange={(event) => { this.componentName = event.target.value }}>
+                                <div className="ui inverted segment">
+                                    <div className="ui inverted form">
+                                        <div className="two fields">
+                                            <div className="field">
+                                                <div className="two fields">
+                                                    <div className="field">
+                                                        <label>Category</label>
+                                                        <select className="ui fluid dropdown" onChange={(event) => { this.componentName = event.target.value }}>
                                                             <option value="">Select One</option>
                                                             <option value="bp">Blood Pressure(Sys/Dys)</option>
                                                             <option value="hw">Height/Weight</option>
@@ -75,14 +74,14 @@ class CollectClinicals extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="field">
+                                            <div className="field">
                                                 <label>Value</label>
                                                 <input placeholder="Value" type="text" name="componentValue" onChange={(event) => { this.componentValue = event.target.value }} />
                                             </div>
                                         </div>
-                                        <div class="inline field">
-                                            <div class="ui checkbox">
-                                                <input type="checkbox" tabindex="0" class="hidden" />
+                                        <div className="inline field">
+                                            <div className="ui checkbox">
+                                                <input type="checkbox" tabIndex="0" className="hidden" />
                                                 <label>I agree to the terms and conditions</label>
                                             </div>
                                         </div>
@@ -90,11 +89,11 @@ class CollectClinicals extends React.Component {
                                     </div>
                                 </div>
                             </form>
-                        </p>
+                        </div>
+                        <br/>
                         <ButtonBackToHome/>
                     </div>
                 </div>
-                <Footer />
             </div>
         )
     }

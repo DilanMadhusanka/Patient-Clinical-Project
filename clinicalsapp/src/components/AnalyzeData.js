@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Header from './Header';
-import Footer from './Footer';
 import ButtonBackToHome from './ButtonBackToHome';
 
 class AnalyzeData extends React.Component {
@@ -48,7 +47,7 @@ class AnalyzeData extends React.Component {
                 </div>
                 <br />
                 <ButtonBackToHome/>
-                <Footer />
+                <br/>
             </div>
         )
     }

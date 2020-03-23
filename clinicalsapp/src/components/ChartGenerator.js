@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Header from './Header';
-import Footer from './Footer';
 import ButtonBackToHome from './ButtonBackToHome';
 
 class ChartGenerator extends React.Component {
@@ -20,13 +19,13 @@ class ChartGenerator extends React.Component {
             <div>
                 <Header />
                 <br />
-                <div className="ui container" style={{ paddingLeft: "26%" }}>
+                <div className="ui container" style={{ paddingLeft: "27%" }}>
                     <div className="ui center aligned compact segment">
-                        <table class="ui center aligned very basic collapsing celled table">
+                        <table className="ui center aligned very basic collapsing celled table">
                             <thead>
                                 <tr>
-                                    <th>componentName</th>
-                                    <th>componentValue</th>
+                                    <th>Checkup Category</th>
+                                    <th>Mesurement</th>
                                     <th>Id</th>
                                 </tr>
                             </thead>
@@ -36,7 +35,6 @@ class ChartGenerator extends React.Component {
                 </div>
                 <br/>
                 <ButtonBackToHome/>
-                <Footer />
             </div >
         )
     }
@@ -49,11 +47,11 @@ class TableCreator extends React.Component {
             <tbody>
                 <tr>
                     <td>
-                        <h4 class="ui image header">
+                        <h4 className="ui image header">
                             {/* <img src="/images/avatar2/small/lena.png" class="ui mini rounded image" /> */}
-                            <div class="content">
+                            <div className="content">
                                 {this.props.item.componentName}
-                                <div class="sub header">
+                                <div className="sub header">
                                     {/* Human Resources */}
                                 </div>
                             </div>
